@@ -17,6 +17,7 @@ data = pd.read_csv('./test/data.csv')
 X = data.iloc[:6000, 1:].values.astype(np.float32)
 y = data.iloc[:6000, 0].values.astype(int)
 
+# Current preprocessing image based on 28x28x1 MNIST dataset
 # Normalize the pixel values to range [0, 1]
 X /= 255.0
 
@@ -24,12 +25,13 @@ X /= 255.0
 X = X.reshape(-1, 28, 28, 1)
 
 # Split to train and test set
+# Change test size and random state
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.2, stratify=y)
 
 # Show example image
 Sequential.display_image(X_train[0], y_train[0])
 
-# Create the CNN model
+# Create the CNN model (You can create your own model)
 # My model
 model = Sequential()
 model.add(Conv2D(filters=16, kernel_size=3, input_channels=1))
@@ -60,6 +62,7 @@ y_one_hot = to_categorical(y_train, num_classes=10)
 # model = Sequential.load_model('./test/model.pkl')
 
 # Train the model
+# Adjust epochs, batch size, and learning rate
 model.fit(X_train, y_one_hot, epochs=10, batch_size=32, learning_rate=0.05)
 
 # Test the model
