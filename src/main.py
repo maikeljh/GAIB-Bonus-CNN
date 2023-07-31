@@ -1,5 +1,5 @@
 # Michael Jonathan Halim 13521124
-# GAIB - Hard - ANN
+# GAIB - Bonus - CNN
 
 # Load libraries
 import numpy as np
@@ -9,10 +9,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 # Load and preprocess the data
-# Load the data (replace 'your_data_file.csv' with the actual filename)
+# Load the data (replace data with your data filename)
 data = pd.read_csv('./test/data.csv')
 
 # Extract features (pixel values) and labels
+# Adjust how many data you want to train and test
 X = data.iloc[:6000, 1:].values.astype(np.float32)
 y = data.iloc[:6000, 0].values.astype(int)
 
@@ -50,9 +51,12 @@ model.add(Dense(input_size=13*13*16, output_size=10, activation_function=softmax
 # Train the model
 # Convert labels to one-hot encoding
 from keras.utils import to_categorical
+
+# For this dataset, it has 10 classes
 y_one_hot = to_categorical(y_train, num_classes=10)
 
 # Load model (optional)
+# Change the relative path to your relative path
 # model = Sequential.load_model('./test/model.pkl')
 
 # Train the model
@@ -64,8 +68,10 @@ y_pred = model.predict(X_test)
 # Evaluate
 classification_rep = classification_report(y_test, y_pred)
 
+# Print Classification Report
 print("\nClassification Report:")
 print(classification_rep)
 
 # Save model (optional)
+# Change the relative path to your relative path
 # model.save_model('./test/model.pkl')
