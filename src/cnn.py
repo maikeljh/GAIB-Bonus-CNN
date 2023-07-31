@@ -20,7 +20,7 @@ def mean_square_error(y_true, y_pred):
 
 # Softmax Activation Function
 def softmax(x):
-    # Subtract the maximum value of x to prevent overflow
+    # Calculate exp of x
     exp_x = np.exp(x)
     
     # Compute softmax values
